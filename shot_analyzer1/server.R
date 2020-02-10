@@ -19,17 +19,17 @@ shinyServer(function(input, output) {
     
     output$chart1 <- renderPlot({
         # shots made vs missed at away or home 
-        shotmvm <- shotlog %>%
+        madevmissed <- shotlog %>%
             group_by(player_name, LOCATION, SHOT_RESULT) %>%
             summarize(countratio = n()) %>%
-            mutate(prop = countratio / sum(countratio)) %>%
+            mutate(ratio = countratio / sum(countratio)) %>%
             filter(player_name == input$player)
-        shotmvm <- as.data.frame(shotmvm)
-        colnames(shotmvm) <- c("Player","Location","Shot_Result","Shot_Count","Shot_Pct")
-        shotmvm$Location <-
-            with(shotmvm, factor(Location, levels = rev(levels(Location))))
+        madevmissed <- as.data.frame(madevmissed)
+        colnames(madevmissed) <- c("Player","Location","Shot_Result","Shot_Count","Shot_Pct")
+        madevmissed$Location <-
+            with(madevmissed, factor(Location, levels = rev(levels(Location))))
         
-        g1 <- ggplot(shotmvm, aes(x = Shot_Result, y = Shot_Pct)) + facet_grid(. ~ Location) +
+        g1 <- ggplot(madevmissed, aes(x = Shot_Result, y = Shot_Pct)) + facet_grid(. ~ Location) +
             ggtitle(paste("%Shots Made vs. Missed by ",toupper(unique(input$player)),
                 "\n Home vs Away Games" ,sep = "")) +
             geom_bar(stat = "identity",
