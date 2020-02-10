@@ -1,0 +1,13 @@
+name: NBA_Player_Analysis
+title: NBA_Player_Analysis
+username:
+account: mikelim91
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1785102
+bundleId: 2787340
+url: https://mikelim91.shinyapps.io/NBA_Player_Analysis/
+when: 1581297829.23326
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: top100.R|data/shot_logs3.csv
