@@ -146,7 +146,7 @@ shinyServer(function(input, output) {
 
     ## First Quarter Top Shooters
     
-    first_q <- shotlog %>% filter(PERIOD == 1, SHOT_DIST > 5) %>% group_by(player_name) %>% 
+    first_q <- shotlog %>% %>% filter(PERIOD == 1, SHOT_DIST > 5) %>% group_by(player_name) %>% 
         summarise(made = sum(FGM), 
                   total_attempts = length(FGM),
                   ave_defense_dist = round(mean(CLOSE_DEF_DIST, na.rm = T),2),
